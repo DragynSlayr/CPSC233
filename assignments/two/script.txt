@@ -1,0 +1,39 @@
+Compiled with: javac *.java
+Executed with: java Test
+
+Sample Execution below
+Enter x coordinate of point 1: 2
+Enter y coordinate of point 1: 2
+Enter x coordinate of point 2: 4
+Enter y coordinate of point 2: 4
+Enter x coordinate of point 3: 6
+Enter y coordinate of point 3: 6
+
+Points Created
+ID: 1, Position: (2.0, 2.0)
+ID: 2, Position: (4.0, 4.0)
+ID: 3, Position: (6.0, 6.0)
+
+Enter x displacement: 1
+Enter y displacement: 1
+
+Moved Points
+ID: 1, Position: (3.0, 3.0)
+ID: 2, Position: (5.0, 5.0)
+ID: 3, Position: (7.0, 7.0)
+Active Objects: 3
+
+Default Point
+ID: 4, Position: (0.0, 0.0)
+
+Distances Between Points
+1 and 4: 4.242640687119285
+2 and 4: 7.0710678118654755
+3 and 4: 9.899494936611665
+
+Average Point
+ID: 5, Position: (5.0, 5.0)
+Active Objects: 5
+
+After Deleting 3 Points
+Active Objects: 2

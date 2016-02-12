@@ -1,0 +1,36 @@
+Compiled with: javac Grades.java
+Executed with: java Grades
+
+Sample Execution below
+Enter your course name: PHIL 279
+Enter your grades for PHIL 279 as numbers (-1 to quit)
+Grade 1: 92
+Grade 2: 83
+Grade 3: 100
+Grade 4: 95
+Grade 5: 85
+Grade 6: 94
+Grade 7: 79
+Grade 8: 89
+Grade 9: -1
+
+Grades for PHIL 279
+Total: 8
+Sum: 717
+Minimum: 79
+Maximum: 100
+Average: 89.63
+Letter Grade: A-
+
+Grade Distribution for PHIL 279
+A: 4
+A-: 2
+B+: 1
+B: 1
+B-: 0
+C+: 0
+C: 0
+C-: 0
+D+: 0
+D: 0
+F: 0
