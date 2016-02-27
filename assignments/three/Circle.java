@@ -44,7 +44,6 @@ public class Circle extends Shape {
 	 *            The new radius for the Circle
 	 */
 	public void setRadius(double radius) {
-		// Update the value of the radius
 		this.radius = radius;
 	}
 
@@ -54,7 +53,6 @@ public class Circle extends Shape {
 	 * @return The radius of this Circle
 	 */
 	public double getRadius() {
-		// Return the radius
 		return this.radius;
 	}
 
