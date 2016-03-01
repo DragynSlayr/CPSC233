@@ -47,7 +47,9 @@ public class Rectangle extends Shape {
 	 *            The new width
 	 */
 	public void setWidth(double width) {
-		this.width = width;
+		if (width >= 0.0) {
+			this.width = width;
+		}
 	}
 
 	/**
@@ -57,7 +59,9 @@ public class Rectangle extends Shape {
 	 *            The new length
 	 */
 	public void setLength(double length) {
-		this.length = length;
+		if (length >= 0.0) {
+			this.length = length;
+		}
 	}
 
 	/**
@@ -116,9 +120,10 @@ public class Rectangle extends Shape {
 		String rectangleInfo;
 
 		// Store the origin, width, length, area and circumference
-		rectangleInfo = "Origin: " + this.getOrigin() + ", Dimensions: "
-				+ this.length + " x " + this.width + ", Area: "
-				+ this.getArea() + ", Perimeter: " + this.getCircumference();
+		rectangleInfo = "Rectangle; Origin: " + this.getOrigin()
+				+ ", Dimensions: " + this.length + " x " + this.width
+				+ ", Area: " + this.getArea() + ", Perimeter: "
+				+ this.getCircumference();
 
 		// Return the Rectangle information
 		return rectangleInfo;
