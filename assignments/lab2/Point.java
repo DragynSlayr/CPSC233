@@ -1,9 +1,9 @@
-package three;
+package lab2;
 
 /**
- * Class for creating and modifying points on a Cartesian-plane
- * 
- * @author Inderpreet Dhillon
+ * @author Inderpreet Dhillon 
+ * Class for creating and modifying points on a
+ *         Cartesian-plane
  */
 public class Point {
 
@@ -175,11 +175,12 @@ public class Point {
 	// Called when an object is being printed
 	@Override
 	public String toString() {
-		// String for Point information
+		// String for point information
 		String pointInfo;
 
-		// Store the information of the point, the position
-		pointInfo = "(" + this.xPosition + ", " + this.yPosition + ")";
+		// Store the information of the point, ID and position
+		pointInfo = "ID: " + this.pointID() + ", Position: (" + this.xPosition
+				+ ", " + this.yPosition + ")";
 
 		// Return information
 		return pointInfo;

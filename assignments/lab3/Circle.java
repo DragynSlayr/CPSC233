@@ -1,4 +1,4 @@
-package three;
+package lab3;
 
 /**
  * Class for representing a circle

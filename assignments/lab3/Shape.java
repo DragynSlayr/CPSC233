@@ -1,4 +1,4 @@
-package three;
+package lab3;
 
 /**
  * A class for representing a shape, must be extended

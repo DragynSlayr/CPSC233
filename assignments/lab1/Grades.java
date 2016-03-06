@@ -1,4 +1,4 @@
-package one;
+package lab1;
 
 /*
  * Author: Inderpreet Dhillon
