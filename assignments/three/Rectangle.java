@@ -47,9 +47,7 @@ public class Rectangle extends Shape {
 	 *            The new width
 	 */
 	public void setWidth(double width) {
-		if (width >= 0.0) {
-			this.width = width;
-		}
+		this.width = width;
 	}
 
 	/**
@@ -59,9 +57,7 @@ public class Rectangle extends Shape {
 	 *            The new length
 	 */
 	public void setLength(double length) {
-		if (length >= 0.0) {
-			this.length = length;
-		}
+		this.length = length;
 	}
 
 	/**

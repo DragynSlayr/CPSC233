@@ -33,6 +33,8 @@ public final class Test {
 			// Get input from the user
 			System.out.print("Enter choice: ");
 			int choice = Integer.parseInt(keyb.nextLine());
+			
+			System.out.println();
 
 			switch (choice) {
 			case 1:
@@ -59,8 +61,13 @@ public final class Test {
 					System.out.print("Y-coordinate: ");
 					y = Double.parseDouble(keyb.nextLine());
 
-					// Add a new Circle using the values from the user
-					shapes.add(new Circle(radius, x, y));
+					// Check that the radius is non-negative
+					if (radius > 0.0) {
+						// Add a new Circle using the values from the user
+						shapes.add(new Circle(radius, x, y));
+					} else {
+						System.out.println("Radius cannot be negative");
+					}
 				} else if (shapeLetter == 'r') {
 					// Variables to hold the Rectangle's properties
 					double length, width, x, y;
@@ -80,8 +87,14 @@ public final class Test {
 					System.out.print("Y-coordinate: ");
 					y = Double.parseDouble(keyb.nextLine());
 
-					// Add a new Rectangle using the values from the user
-					shapes.add(new Rectangle(length, width, x, y));
+					// Check that length and width are non-negative
+					if (length > 0.0 && width > 0.0) {
+						// Add a new Rectangle using the values from the user
+						shapes.add(new Rectangle(length, width, x, y));
+					} else {
+						System.out
+								.println("Both length and width must be positive");
+					}
 				} else {
 					System.out.println("Invalid choice!");
 				}
@@ -107,8 +120,12 @@ public final class Test {
 				System.out.print("Y-coordinate: ");
 				newY = Double.parseDouble(keyb.nextLine());
 
-				// Set the shapes position
-				shapes.get(index).setOrigin(newX, newY);
+				try {
+					// Set the shapes position
+					shapes.get(index).setOrigin(newX, newY);
+				} catch (Exception e) {
+					System.out.println("No shape at that position!");
+				}
 				break;
 			case 3:
 				// Ask for the index of the shape that will be resized
@@ -118,45 +135,49 @@ public final class Test {
 				// 1
 				index = Integer.parseInt(keyb.nextLine()) - 1;
 
-				// Check whether the shape is a Circle or Rectangle
-				if (shapes.get(index) instanceof Rectangle) {
-					// Variables to hold new dimensions
-					double length, width;
+				try {
+					// Check whether the shape is a Circle or Rectangle
+					if (shapes.get(index) instanceof Rectangle) {
+						// Variables to hold new dimensions
+						double length, width;
 
-					System.out.println("Enter new dimensions");
+						System.out.println("Enter new dimensions");
 
-					// Store the new dimensions from the user
-					System.out.print("New length: ");
-					length = Double.parseDouble(keyb.nextLine());
+						// Store the new dimensions from the user
+						System.out.print("New length: ");
+						length = Double.parseDouble(keyb.nextLine());
 
-					System.out.print("New width: ");
-					width = Double.parseDouble(keyb.nextLine());
+						System.out.print("New width: ");
+						width = Double.parseDouble(keyb.nextLine());
 
-					// Cast the shape at the index to Rectangle
-					Rectangle r = (Rectangle) shapes.get(index);
-					r.setSize(length, width);
+						// Cast the shape at the index to Rectangle
+						Rectangle r = (Rectangle) shapes.get(index);
+						r.setSize(length, width);
 
-					// Put the resized Rectangle into the list
-					shapes.set(index, r);
-				} else if (shapes.get(index) instanceof Circle) {
-					// Variable to hold new dimension
-					double radius;
+						// Put the resized Rectangle into the list
+						shapes.set(index, r);
+					} else if (shapes.get(index) instanceof Circle) {
+						// Variable to hold new dimension
+						double radius;
 
-					System.out.println("Enter new dimension");
+						System.out.println("Enter new dimension");
 
-					// Store the new radius from the user
-					System.out.print("New radius: ");
-					radius = Double.parseDouble(keyb.nextLine());
+						// Store the new radius from the user
+						System.out.print("New radius: ");
+						radius = Double.parseDouble(keyb.nextLine());
 
-					// Cast the shape at the index to Circle
-					Circle c = (Circle) shapes.get(index);
-					c.setRadius(radius);
+						// Cast the shape at the index to Circle
+						Circle c = (Circle) shapes.get(index);
+						c.setRadius(radius);
 
-					// Put the resized Circle into the list
-					shapes.set(index, c);
-				} else {
-					// User chose invalid index
-					System.out.println("Invalid index!");
+						// Put the resized Circle into the list
+						shapes.set(index, c);
+					} else {
+						// Shape may have been destroyed
+						System.out.println("No shape at that index!");
+					}
+				} catch (Exception e) {
+					System.out.println("No shape at that index!");
 				}
 				break;
 			case 4:
@@ -167,8 +188,12 @@ public final class Test {
 				// 1
 				index = Integer.parseInt(keyb.nextLine()) - 1;
 
-				// Print the shape at the index
-				System.out.println(shapes.get(index));
+				try {
+					// Print the shape at the index
+					System.out.println(shapes.get(index));
+				} catch (Exception e) {
+					System.out.println("No shape at that index!");
+				}
 				break;
 			case 5:
 				// Ask for the index of the shape that will be moved
@@ -191,8 +216,12 @@ public final class Test {
 				System.out.print("Y-movement: ");
 				deltaY = Double.parseDouble(keyb.nextLine());
 
-				// Move the shape at the index
-				shapes.get(index).move(deltaX, deltaY);
+				try {
+					// Move the shape at the index
+					shapes.get(index).move(deltaX, deltaY);
+				} catch (Exception e) {
+					System.out.println("No shape at that index!");
+				}
 				break;
 			case 6:
 				// Variables to store the indices of the two shapes
@@ -213,17 +242,21 @@ public final class Test {
 				// 1
 				shapeIndex2 = Integer.parseInt(keyb.nextLine()) - 1;
 
-				// Get the two shapes
-				Shape shapeOne = shapes.get(shapeIndex1);
-				Shape shapeTwo = shapes.get(shapeIndex2);
+				try {
+					// Get the two shapes
+					Shape shapeOne = shapes.get(shapeIndex1);
+					Shape shapeTwo = shapes.get(shapeIndex2);
 
-				// Calculate distance
-				double distance = shapeOne.distance(shapeTwo);
+					// Calculate distance
+					double distance = shapeOne.distance(shapeTwo);
 
-				// Print the distance between the shapes
-				System.out.printf(
-						"The distance between shapes %d and %d is %f\n",
-						(++shapeIndex1), (++shapeIndex2), distance);
+					// Print the distance between the shapes
+					System.out.printf(
+							"The distance between shapes %d and %d is %f\n",
+							(++shapeIndex1), (++shapeIndex2), distance);
+				} catch (Exception e) {
+					System.out.println("One or more indexes are invalid!");
+				}
 				break;
 			case 7:
 				// Ask for the index of the shape that will be destroyed
@@ -233,19 +266,26 @@ public final class Test {
 				// 1
 				index = Integer.parseInt(keyb.nextLine()) - 1;
 
-				// Set the reference to null
-				shapes.set(index, null);
+				try {
+					// Set the reference to null
+					shapes.set(index, null);
 
-				// Notify user
-				System.out.printf("Shape at %d destroyed!", ++index);
+					// Notify user
+					System.out.printf("Shape at %d destroyed!\n", ++index);
+				} catch (Exception e) {
+					System.out.println("Index not valid!");
+				}
 				break;
 			case 8:
-				// Convert the ArrayList to a Object array
+				// Upcast the Shape ArrayList to an Object array
 				Object[] shapeArray = shapes.toArray();
 
 				// Traverse array and print each Shape
 				for (int i = 0; i < shapeArray.length; i++) {
-					System.out.printf("%d: %s\n", (i + 1), shapeArray[i]);
+					//Print active objects, i.e. not destroyed
+					if(shapeArray[i] != null) {
+						System.out.printf("%d: %s\n", (i + 1), shapeArray[i]);
+					}
 				}
 				break;
 			case 9:

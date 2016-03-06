@@ -44,9 +44,7 @@ public class Circle extends Shape {
 	 *            The new radius for the Circle
 	 */
 	public void setRadius(double radius) {
-		if (radius >= 0.0) {
-			this.radius = radius;
-		}
+		this.radius = radius;
 	}
 
 	/**
@@ -84,7 +82,7 @@ public class Circle extends Shape {
 		// Fill the string with information
 		circleInfo = "Circle; Origin: " + this.getOrigin() + ", Radius: "
 				+ this.radius + ", Area: " + this.getArea()
-				+ ", Cicumference: " + this.getCircumference();
+				+ ", Circumference: " + this.getCircumference();
 
 		// Return the String representation of the Circle
 		return circleInfo;

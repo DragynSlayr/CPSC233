@@ -14,11 +14,12 @@ Sample Execution
 8) Print all created shapes
 9) Quit
 Enter choice: 1
+
 Create Circle (c) or Rectangle (r): c
 Enter properties of the Circle
-Radius: 5
-X-coordinate: 6
-Y-coordinate: 8
+Radius: 2
+X-coordinate: 5
+Y-coordinate: 5
 
 1) Create new shape
 2) Change origin of shape
@@ -30,11 +31,12 @@ Y-coordinate: 8
 8) Print all created shapes
 9) Quit
 Enter choice: 1
+
 Create Circle (c) or Rectangle (r): r
 Enter properties of the Rectangle
-Length: 35
-Width: 6
-X-coordinate: 9
+Length: 2
+Width: 3
+X-coordinate: 5
 Y-coordinate: 8
 
 1) Create new shape
@@ -47,8 +49,51 @@ Y-coordinate: 8
 8) Print all created shapes
 9) Quit
 Enter choice: 8
-1: Circle; Origin: (6.0, 8.0), Radius: 5.0, Area: 78.53981633974483, Cicumference: 31.41592653589793
-2: Rectangle; Origin: (9.0, 8.0), Dimensions: 35.0 x 6.0, Area: 210.0, Perimeter: 82.0
+
+1: Circle; Origin: (5.0, 5.0), Radius: 2.0, Area: 12.566370614359172, Circumference: 12.566370614359172
+2: Rectangle; Origin: (5.0, 8.0), Dimensions: 2.0 x 3.0, Area: 6.0, Perimeter: 10.0
+
+1) Create new shape
+2) Change origin of shape
+3) Change shape dimensions
+4) Display shape info
+5) Move shape
+6) Find distance between shapes
+7) Destroy shape
+8) Print all created shapes
+9) Quit
+Enter choice: 6
+
+Enter position of first shape: 1
+Enter position of second shape: 2
+The distance between shapes 1 and 2 is 3.000000
+
+1) Create new shape
+2) Change origin of shape
+3) Change shape dimensions
+4) Display shape info
+5) Move shape
+6) Find distance between shapes
+7) Destroy shape
+8) Print all created shapes
+9) Quit
+Enter choice: 7
+
+Enter position of shape to destroy: 2
+Shape at 2 destroyed!
+
+1) Create new shape
+2) Change origin of shape
+3) Change shape dimensions
+4) Display shape info
+5) Move shape
+6) Find distance between shapes
+7) Destroy shape
+8) Print all created shapes
+9) Quit
+Enter choice: 8
+
+1: Circle; Origin: (5.0, 5.0), Radius: 2.0, Area: 12.566370614359172, Circumference: 12.566370614359172
 
 1) Create new shape
 2) Change origin of shape
@@ -60,4 +105,5 @@ Enter choice: 8
 8) Print all created shapes
 9) Quit
 Enter choice: 9
+
 Stopping...
