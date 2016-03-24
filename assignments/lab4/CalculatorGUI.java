@@ -146,46 +146,88 @@ public class CalculatorGUI {
 		frame.setVisible(isVisible);
 	}
 
+	/**
+	 * Assigns a button listener to the calculate button
+	 * 
+	 * @param listener
+	 *            The listener to use for the button
+	 */
 	public void addCalculateButtonListener(ActionListener listener) {
 		this.calculateButton.addActionListener(listener);
 	}
 
+	/**
+	 * Gets the text from the Principal field
+	 * 
+	 * @return Text from Principal field
+	 */
 	public String getPrincipal() {
 		return principalField.getText();
 	}
 
+	/**
+	 * Gets the text from the Interest field
+	 * 
+	 * @return Text from Interest field
+	 */
 	public String getInterest() {
 		return interestField.getText();
 	}
 
+	/**
+	 * Gets the text from the Amortization field
+	 * 
+	 * @return Text from Amortization field
+	 */
 	public String getAmortization() {
 		return amortizationField.getText();
 	}
 
+	/**
+	 * Sets the text of the Monthly Payment field
+	 */
 	public void setMonthlyPayment(String monthlyPayment) {
 		this.monthlyPaymentField.setText(monthlyPayment);
 	}
 
+	/**
+	 * Sets the text of the Total Interest field
+	 */
 	public void setTotalInterest(String totalInterest) {
 		this.totalInterestField.setText(totalInterest);
 	}
 
+	/**
+	 * Sets the text of the Principal Interest field
+	 */
 	public void setPrincipalInterest(String principalInterest) {
 		this.principalInterestField.setText(principalInterest);
 	}
 
+	/**
+	 * Sets the text of the Interest Principal Ratio field
+	 */
 	public void setInterestPrincipalRatio(String interestPrincipalRatio) {
 		this.interestPrincipalRatioField.setText(interestPrincipalRatio);
 	}
 
+	/**
+	 * Sets the text of the Yearly Interest field
+	 */
 	public void setYearlyInterest(String yearlyInterest) {
 		this.yearlyInterestField.setText(yearlyInterest);
 	}
 
+	/**
+	 * Sets the text of the Monthly Interest field
+	 */
 	public void setMonthlyInterest(String monthlyInterest) {
 		this.monthlyInterestField.setText(monthlyInterest);
 	}
 
+	/**
+	 * Sets the text of the Years Amortization field
+	 */
 	public void setYearsAmortization(String yearsAmortization) {
 		this.yearsAmortizationField.setText(yearsAmortization);
 	}
