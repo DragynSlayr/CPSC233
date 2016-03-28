@@ -3,6 +3,11 @@ package lab4;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Listener that calculates and set values of the GUI
+ * 
+ * @author Inderpreet Dhillon
+ */
 public class ButtonHandler implements ActionListener {
 
 	// Reference to the GUI

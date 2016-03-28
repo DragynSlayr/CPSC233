@@ -1,5 +1,11 @@
 package lab4;
 
+/**
+ * Holds methods for mortgage calculations
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class Mortgage {
 
 	// Instance variables

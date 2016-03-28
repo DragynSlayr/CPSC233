@@ -1,5 +1,11 @@
 package lab4;
 
+/**
+ * Provides functionality to the GUI using the the Mortgage
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class MortgageCalculator {
 
 	/**

@@ -12,6 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Provides a graphical interface for the user
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class CalculatorGUI {
 
 	// Instance variables for the GUI
@@ -185,6 +191,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Monthly Payment field
+	 * 
+	 * @param monthlyPayment
+	 *            The new monthly payment
 	 */
 	public void setMonthlyPayment(String monthlyPayment) {
 		this.monthlyPaymentField.setText(monthlyPayment);
@@ -192,6 +201,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Total Interest field
+	 * 
+	 * @param totalInterest
+	 *            The new total interest
 	 */
 	public void setTotalInterest(String totalInterest) {
 		this.totalInterestField.setText(totalInterest);
@@ -199,6 +211,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Principal Interest field
+	 * 
+	 * @param principalInterest
+	 *            The new principal interest
 	 */
 	public void setPrincipalInterest(String principalInterest) {
 		this.principalInterestField.setText(principalInterest);
@@ -206,6 +221,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Interest Principal Ratio field
+	 * 
+	 * @param interestPrincipalRatio
+	 *            The new interest principal ratio
 	 */
 	public void setInterestPrincipalRatio(String interestPrincipalRatio) {
 		this.interestPrincipalRatioField.setText(interestPrincipalRatio);
@@ -213,6 +231,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Yearly Interest field
+	 * 
+	 * @param yearlyInterest
+	 *            The new yearly interest
 	 */
 	public void setYearlyInterest(String yearlyInterest) {
 		this.yearlyInterestField.setText(yearlyInterest);
@@ -220,6 +241,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Monthly Interest field
+	 * 
+	 * @param monthlyInterest
+	 *            The new monthly interest
 	 */
 	public void setMonthlyInterest(String monthlyInterest) {
 		this.monthlyInterestField.setText(monthlyInterest);
@@ -227,6 +251,9 @@ public class CalculatorGUI {
 
 	/**
 	 * Sets the text of the Years Amortization field
+	 * 
+	 * @param yearsAmortization
+	 *            The new amortization in years
 	 */
 	public void setYearsAmortization(String yearsAmortization) {
 		this.yearsAmortizationField.setText(yearsAmortization);
