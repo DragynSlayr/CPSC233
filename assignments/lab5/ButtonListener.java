@@ -8,18 +8,23 @@ import javax.swing.JButton;
 public class ButtonListener implements ActionListener {
 
 	private View view;
-	private Model model;
 
-	private Thread temperatureThread, humidityThread, soilMoistureThread;
-	private boolean temperatureClosed, humidityClosed, moistureClosed;
+	private TemperatureController temperatureThread;
+	private HumidityController humidityThread;
+	private MoistureController soilMoistureThread;
+	private boolean temperatureClosed, humidityClosed, moistureClosed,
+			threadsStarted;
 
-	public ButtonListener(View view, Model model) {
+	public ButtonListener(View view) {
 		this.view = view;
-		this.model = model;
 
 		this.temperatureClosed = true;
 		this.humidityClosed = true;
 		this.moistureClosed = true;
+
+		this.temperatureThread = new TemperatureController(this.view);
+		this.humidityThread = new HumidityController(this.view);
+		this.soilMoistureThread = new MoistureController(this.view);
 	}
 
 	private void viewSetEnabled(boolean enabled) {
@@ -31,9 +36,9 @@ public class ButtonListener implements ActionListener {
 		view.saveButton.setEnabled(enabled);
 		view.loadButton.setEnabled(enabled);
 
-		view.temperatureOutput.setEnabled(enabled);
-		view.humidityOutput.setEnabled(enabled);
-		view.soilMoistureOutput.setEnabled(enabled);
+		view.temperatureOutput.setEditable(enabled);
+		view.humidityOutput.setEditable(enabled);
+		view.soilMoistureOutput.setEditable(enabled);
 
 		view.stopButton.setEnabled(!enabled);
 	}
@@ -70,7 +75,20 @@ public class ButtonListener implements ActionListener {
 			view.setVisible(view.rateInputFrame, false);
 			viewSetEnabled(false);
 
-			// TODO Start threads
+			temperatureThread.update();
+			humidityThread.update();
+			soilMoistureThread.update();
+
+			if (!this.threadsStarted) {
+				temperatureThread.start();
+				humidityThread.start();
+				soilMoistureThread.start();
+				this.threadsStarted = true;
+			} else {
+				temperatureThread.setPaused(false);
+				humidityThread.setPaused(false);
+				soilMoistureThread.setPaused(false);
+			}
 			break;
 		case "start_simulation":
 			if ((this.temperatureClosed && this.humidityClosed)
@@ -81,7 +99,9 @@ public class ButtonListener implements ActionListener {
 		case "stop_simulation":
 			viewSetEnabled(true);
 
-			// TODO Stop threads
+			temperatureThread.setPaused(true);
+			humidityThread.setPaused(true);
+			soilMoistureThread.setPaused(true);
 			break;
 		case "save_simulation":
 			System.out.println(pushed.getName());

@@ -19,7 +19,7 @@ public class View {
 	public JFrame mainFrame, temperatureInputFrame, humidityInputFrame,
 			soilMoistureInputFrame, rateInputFrame;
 
-	private final ImageIcon ON = new ImageIcon("assignments\\lab5\\on.png"),
+	public final ImageIcon ON = new ImageIcon("assignments\\lab5\\on.png"),
 			OFF = new ImageIcon("assignments\\lab5\\off.png");
 
 	public JButton temperatureButton, humidityButton, soilMoistureButton;

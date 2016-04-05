@@ -2,8 +2,8 @@ package lab5;
 
 public class Controller {
 
-	public Controller(View view, Model model) {
-		ButtonListener buttonListener = new ButtonListener(view, model);
+	public Controller(View view) {
+		ButtonListener buttonListener = new ButtonListener(view);
 
 		view.temperatureButton.addActionListener(buttonListener);
 		view.humidityButton.addActionListener(buttonListener);
@@ -23,9 +23,8 @@ public class Controller {
 
 	public static void main(String[] args) {
 		View view = new View();
-		Model model = new Model();
 
-		new Controller(view, model);
+		new Controller(view);
 
 		view.setVisible(view.mainFrame, true);
 	}
