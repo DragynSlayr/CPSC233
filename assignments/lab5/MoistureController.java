@@ -3,13 +3,15 @@ package lab5;
 public class MoistureController extends Thread {
 
 	private View view;
+	private GreenHouse greenHouse;
 	private double currentMoisture, externalChange, minimumMoisture,
 			maximumMoisture, sprinklerChange;
 	private int delay;
 	private boolean running, paused;
 
-	public MoistureController(View view) {
+	public MoistureController(View view, GreenHouse greenHouse) {
 		this.view = view;
+		this.greenHouse = greenHouse;
 	}
 
 	public void setRunning(boolean running) {
@@ -42,12 +44,13 @@ public class MoistureController extends Thread {
 		try {
 			while (running) {
 				if (!this.paused) {
-					view.soilMoistureOutput.setText(String
-							.valueOf(++this.currentMoisture));
+					// view.soilMoistureOutput.setText(String
+					// .valueOf(++this.currentMoisture));
 					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {
+			System.err.println(ie.getMessage());
 		}
 	}
 }

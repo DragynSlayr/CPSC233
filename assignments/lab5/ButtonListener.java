@@ -9,6 +9,7 @@ public class ButtonListener implements ActionListener {
 
 	private View view;
 
+	private GreenHouse greenHouseThread;
 	private TemperatureController temperatureThread;
 	private HumidityController humidityThread;
 	private MoistureController soilMoistureThread;
@@ -18,13 +19,14 @@ public class ButtonListener implements ActionListener {
 	public ButtonListener(View view) {
 		this.view = view;
 
-		this.temperatureClosed = true;
-		this.humidityClosed = true;
-		this.moistureClosed = true;
+		temperatureClosed = !view.temperatureInputFrame.isVisible();
+		humidityClosed = !view.humidityInputFrame.isVisible();
+		moistureClosed = !view.soilMoistureInputFrame.isVisible();
 
-		this.temperatureThread = new TemperatureController(this.view);
-		this.humidityThread = new HumidityController(this.view);
-		this.soilMoistureThread = new MoistureController(this.view);
+		greenHouseThread = new GreenHouse(view);
+		temperatureThread = new TemperatureController(view, greenHouseThread);
+		humidityThread = new HumidityController(view, greenHouseThread);
+		soilMoistureThread = new MoistureController(view, greenHouseThread);
 	}
 
 	private void viewSetEnabled(boolean enabled) {
@@ -48,57 +50,60 @@ public class ButtonListener implements ActionListener {
 		JButton pushed = (JButton) e.getSource();
 		switch (pushed.getName()) {
 		case "change_temperature":
-			this.temperatureClosed = false;
+			temperatureClosed = false;
 			view.setVisible(view.temperatureInputFrame, true);
 			break;
 		case "change_humidity":
-			this.humidityClosed = false;
+			humidityClosed = false;
 			view.setVisible(view.humidityInputFrame, true);
 			break;
 		case "change_soil_moisture":
-			this.moistureClosed = false;
+			moistureClosed = false;
 			view.setVisible(view.soilMoistureInputFrame, true);
 			break;
 		case "finalize_temperature":
-			this.temperatureClosed = true;
+			temperatureClosed = true;
 			view.setVisible(view.temperatureInputFrame, false);
 			break;
 		case "finalize_humidity":
-			this.humidityClosed = true;
+			humidityClosed = true;
 			view.setVisible(view.humidityInputFrame, false);
 			break;
 		case "finalize_soil_moisture":
-			this.moistureClosed = true;
+			moistureClosed = true;
 			view.setVisible(view.soilMoistureInputFrame, false);
 			break;
 		case "finalize_simulation":
 			view.setVisible(view.rateInputFrame, false);
 			viewSetEnabled(false);
 
+			greenHouseThread.update();
 			temperatureThread.update();
 			humidityThread.update();
 			soilMoistureThread.update();
 
-			if (!this.threadsStarted) {
+			if (!threadsStarted) {
+				greenHouseThread.start();
 				temperatureThread.start();
 				humidityThread.start();
 				soilMoistureThread.start();
-				this.threadsStarted = true;
+				threadsStarted = true;
 			} else {
+				greenHouseThread.setPaused(false);
 				temperatureThread.setPaused(false);
 				humidityThread.setPaused(false);
 				soilMoistureThread.setPaused(false);
 			}
 			break;
 		case "start_simulation":
-			if ((this.temperatureClosed && this.humidityClosed)
-					&& this.moistureClosed) {
+			if ((temperatureClosed && humidityClosed) && moistureClosed) {
 				view.setVisible(view.rateInputFrame, true);
 			}
 			break;
 		case "stop_simulation":
 			viewSetEnabled(true);
 
+			greenHouseThread.setPaused(true);
 			temperatureThread.setPaused(true);
 			humidityThread.setPaused(true);
 			soilMoistureThread.setPaused(true);

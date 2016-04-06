@@ -3,13 +3,15 @@ package lab5;
 public class HumidityController extends Thread {
 
 	private View view;
+	private GreenHouse greenHouse;
 	private double currentHumidity, externalChange, minimumHumidity,
 			maximumHumidity, humidifierChange;
 	private int delay;
 	private boolean running, paused;
 
-	public HumidityController(View view) {
+	public HumidityController(View view, GreenHouse greenHouse) {
 		this.view = view;
+		this.greenHouse = greenHouse;
 	}
 
 	public void setRunning(boolean running) {
@@ -41,12 +43,13 @@ public class HumidityController extends Thread {
 		try {
 			while (running) {
 				if (!this.paused) {
-					view.humidityOutput.setText(String
-							.valueOf(++this.currentHumidity));
+					// view.humidityOutput.setText(String
+					// .valueOf(++this.currentHumidity));
 					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {
+			System.err.println(ie.getMessage());
 		}
 	}
 }

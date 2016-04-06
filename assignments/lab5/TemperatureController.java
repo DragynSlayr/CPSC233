@@ -3,13 +3,15 @@ package lab5;
 public class TemperatureController extends Thread {
 
 	private View view;
+	private GreenHouse greenHouse;
 	private double currentTemperature, externalChange, idealTemperature,
 			furnaceChange, acChange;
 	private int delay;
 	private boolean running, paused;
 
-	public TemperatureController(View view) {
+	public TemperatureController(View view, GreenHouse greenHouse) {
 		this.view = view;
+		this.greenHouse = greenHouse;
 	}
 
 	public void setRunning(boolean running) {
@@ -41,13 +43,13 @@ public class TemperatureController extends Thread {
 		try {
 			while (this.running) {
 				if (!this.paused) {
-					view.temperatureOutput.setText(String
-							.valueOf(++this.currentTemperature));
+					// view.temperatureOutput.setText(String
+					// .valueOf(++this.currentTemperature));
 					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {
-			System.out.println("Temp broke");
+			System.err.println(ie.getMessage());
 		}
 	}
 }

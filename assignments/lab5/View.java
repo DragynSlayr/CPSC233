@@ -30,7 +30,7 @@ public class View {
 
 	public JTextField temperatureOutput, humidityOutput, soilMoistureOutput;
 	public JTextField temperatureUpdateRateInput, humidityUpdateRateInput,
-			soilMoistureUpdateRateInput;
+			soilMoistureUpdateRateInput, greenHouseUpdateRateInput;
 	public JTextField externalTemperatureChangeInput, idealTemperatureInput,
 			furnaceHeatingRateInput, acCoolingRateInput;
 	public JTextField externalHumidityChangeInput, minimumHumidityInput,
@@ -93,17 +93,19 @@ public class View {
 		frame.getContentPane().setLayout(
 				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(3, 2, 10, 10));
+		JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
 		inputPanel.setBorder(BorderFactory
 				.createTitledBorder("Update Rate in Seconds"));
 
 		JLabel temperatureLabel = new JLabel("Temperature");
 		JLabel humidityLabel = new JLabel("Humidity");
 		JLabel soilMoistureLabel = new JLabel("Soil Moisture");
+		JLabel greenHouseLabel = new JLabel("Green House");
 
 		temperatureUpdateRateInput = new JTextField("3");
 		humidityUpdateRateInput = new JTextField("3");
 		soilMoistureUpdateRateInput = new JTextField("3");
+		greenHouseUpdateRateInput = new JTextField("3");
 
 		inputPanel.add(temperatureLabel);
 		inputPanel.add(temperatureUpdateRateInput);
@@ -111,6 +113,8 @@ public class View {
 		inputPanel.add(humidityUpdateRateInput);
 		inputPanel.add(soilMoistureLabel);
 		inputPanel.add(soilMoistureUpdateRateInput);
+		inputPanel.add(greenHouseLabel);
+		inputPanel.add(greenHouseUpdateRateInput);
 
 		frame.add(inputPanel);
 
