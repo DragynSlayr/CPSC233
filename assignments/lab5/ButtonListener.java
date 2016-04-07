@@ -103,10 +103,15 @@ public class ButtonListener implements ActionListener {
 		case "stop_simulation":
 			viewSetEnabled(true);
 
-			greenHouseThread.setPaused(true);
 			temperatureThread.setPaused(true);
 			humidityThread.setPaused(true);
 			soilMoistureThread.setPaused(true);
+			greenHouseThread.setPaused(true);
+
+			view.airConditionerIndicator.setIcon(view.OFF);
+			view.furnaceIndicator.setIcon(view.OFF);
+			view.humidifierIndicator.setIcon(view.OFF);
+			view.sprinklerIndicator.setIcon(view.OFF);
 			break;
 		case "save_simulation":
 			System.out.println(pushed.getName());

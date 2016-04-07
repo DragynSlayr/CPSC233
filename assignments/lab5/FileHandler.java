@@ -10,11 +10,12 @@ public class FileHandler {
 
 	public FileHandler(View view, String filename) {
 		this.view = view;
-		this.saveFile = new File(filename);
 
-		if (!this.saveFile.exists()) {
+		saveFile = new File(filename);
+
+		if (!saveFile.exists()) {
 			try {
-				this.saveFile.createNewFile();
+				saveFile.createNewFile();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}

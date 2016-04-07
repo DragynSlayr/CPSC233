@@ -4,10 +4,9 @@ public class MoistureController extends Thread {
 
 	private View view;
 	private GreenHouse greenHouse;
-	private double currentMoisture, externalChange, minimumMoisture,
-			maximumMoisture, sprinklerChange;
+	private double minimumMoisture, maximumMoisture, sprinklerChange;
 	private int delay;
-	private boolean running, paused;
+	private volatile boolean running, paused;
 
 	public MoistureController(View view, GreenHouse greenHouse) {
 		this.view = view;
@@ -23,29 +22,43 @@ public class MoistureController extends Thread {
 	}
 
 	public void update() {
-		this.currentMoisture = Double.parseDouble(view.soilMoistureOutput
+		minimumMoisture = Double.parseDouble(view.minimumMoistureInput
 				.getText());
-		this.externalChange = Double
-				.parseDouble(view.externalMoistureChangeInput.getText());
-		this.minimumMoisture = Double.parseDouble(view.minimumMoistureInput
+		maximumMoisture = Double.parseDouble(view.maximumMoistureInput
 				.getText());
-		this.maximumMoisture = Double.parseDouble(view.maximumMoistureInput
+
+		sprinklerChange = Double.parseDouble(view.moisturizingRateInput
 				.getText());
-		this.sprinklerChange = Double.parseDouble(view.moisturizingRateInput
-				.getText());
-		this.delay = Integer.parseInt(view.soilMoistureUpdateRateInput
-				.getText());
+
+		delay = Integer.parseInt(view.soilMoistureUpdateRateInput.getText());
+
+		// Adjust for delay
+		sprinklerChange *= delay / 60.0;
 	}
 
 	@Override
 	public void run() {
-		this.running = true;
-		this.paused = false;
+		running = true;
+		paused = false;
 		try {
 			while (running) {
-				if (!this.paused) {
-					// view.soilMoistureOutput.setText(String
-					// .valueOf(++this.currentMoisture));
+				if (!paused) {
+					double currentMoisture = greenHouse.currentSoilMoisture;
+
+					if (currentMoisture < minimumMoisture) {
+						greenHouse.controllerSoilMoistureChange += sprinklerChange;
+
+						view.sprinklerIndicator.setIcon(view.ON);
+					} else if (currentMoisture > maximumMoisture) {
+						greenHouse.controllerSoilMoistureChange = 0.0;
+
+						view.sprinklerIndicator.setIcon(view.OFF);
+					} else {
+						greenHouse.controllerSoilMoistureChange = 0.0;
+
+						view.sprinklerIndicator.setIcon(view.OFF);
+					}
+
 					sleep(delay * 1000);
 				}
 			}

@@ -141,10 +141,10 @@ public class View {
 				"Furnace Heating rate per Minute");
 		JLabel acCoolingRateLabel = new JLabel("A/C Cooling rate per Minute");
 
-		externalTemperatureChangeInput = new JTextField("0");
+		externalTemperatureChangeInput = new JTextField("3");
 		idealTemperatureInput = new JTextField("20");
-		furnaceHeatingRateInput = new JTextField("0");
-		acCoolingRateInput = new JTextField("0");
+		furnaceHeatingRateInput = new JTextField("5");
+		acCoolingRateInput = new JTextField("4");
 
 		inputPanel.add(externalRateLabel);
 		inputPanel.add(externalTemperatureChangeInput);
@@ -179,10 +179,10 @@ public class View {
 		JLabel maximumHumidityLabel = new JLabel("Maximum Humidity");
 		JLabel humidifyingRateLabel = new JLabel("Humidifying rate per Minute");
 
-		externalHumidityChangeInput = new JTextField("0");
-		minimumHumidityInput = new JTextField("0");
-		maximumHumidityInput = new JTextField("100");
-		humidifyingRateInput = new JTextField("0");
+		externalHumidityChangeInput = new JTextField("-2");
+		minimumHumidityInput = new JTextField("20");
+		maximumHumidityInput = new JTextField("80");
+		humidifyingRateInput = new JTextField("12");
 
 		inputPanel.add(externalRateLabel);
 		inputPanel.add(externalHumidityChangeInput);
@@ -218,10 +218,10 @@ public class View {
 		JLabel moisturizingRateLabel = new JLabel(
 				"Moisturizing rate per Minute");
 
-		externalMoistureChangeInput = new JTextField("0");
-		minimumMoistureInput = new JTextField("0");
-		maximumMoistureInput = new JTextField("100");
-		moisturizingRateInput = new JTextField("0");
+		externalMoistureChangeInput = new JTextField("-1");
+		minimumMoistureInput = new JTextField("10");
+		maximumMoistureInput = new JTextField("50");
+		moisturizingRateInput = new JTextField("3");
 
 		inputPanel.add(externalRateLabel);
 		inputPanel.add(externalMoistureChangeInput);

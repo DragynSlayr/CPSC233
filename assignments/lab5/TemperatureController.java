@@ -4,10 +4,10 @@ public class TemperatureController extends Thread {
 
 	private View view;
 	private GreenHouse greenHouse;
-	private double currentTemperature, externalChange, idealTemperature,
-			furnaceChange, acChange;
+	private double furnaceChange, acChange, minimumTemperature,
+			maximumTemperature;
 	private int delay;
-	private boolean running, paused;
+	private volatile boolean running, paused;
 
 	public TemperatureController(View view, GreenHouse greenHouse) {
 		this.view = view;
@@ -23,28 +23,49 @@ public class TemperatureController extends Thread {
 	}
 
 	public void update() {
-		this.currentTemperature = Double.parseDouble(view.temperatureOutput
+		double idealTemperature = Double.parseDouble(view.idealTemperatureInput
 				.getText());
-		this.externalChange = Double
-				.parseDouble(view.externalTemperatureChangeInput.getText());
-		this.idealTemperature = Double.parseDouble(view.idealTemperatureInput
+
+		minimumTemperature = idealTemperature - 3.0;
+		maximumTemperature = idealTemperature + 3.0;
+
+		furnaceChange = Double.parseDouble(view.furnaceHeatingRateInput
 				.getText());
-		this.furnaceChange = Double.parseDouble(view.furnaceHeatingRateInput
-				.getText());
-		this.acChange = Double.parseDouble(view.acCoolingRateInput.getText());
-		this.delay = Integer
-				.parseInt(view.temperatureUpdateRateInput.getText());
+		acChange = Double.parseDouble(view.acCoolingRateInput.getText());
+
+		delay = Integer.parseInt(view.temperatureUpdateRateInput.getText());
+
+		// Adjust for delay
+		furnaceChange *= delay / 60.0;
+		acChange *= delay / 60.0;
 	}
 
 	@Override
 	public void run() {
-		this.running = true;
-		this.paused = false;
+		running = true;
+		paused = false;
 		try {
-			while (this.running) {
-				if (!this.paused) {
-					// view.temperatureOutput.setText(String
-					// .valueOf(++this.currentTemperature));
+			while (running) {
+				if (!paused) {
+					double currentTemperature = greenHouse.currentTemperature;
+
+					if (currentTemperature < minimumTemperature) {
+						greenHouse.controllerTemperatureChange += furnaceChange;
+
+						view.furnaceIndicator.setIcon(view.ON);
+						view.airConditionerIndicator.setIcon(view.OFF);
+					} else if (currentTemperature > maximumTemperature) {
+						greenHouse.controllerTemperatureChange -= acChange;
+
+						view.furnaceIndicator.setIcon(view.OFF);
+						view.airConditionerIndicator.setIcon(view.ON);
+					} else {
+						greenHouse.controllerTemperatureChange = 0.0;
+
+						view.furnaceIndicator.setIcon(view.OFF);
+						view.airConditionerIndicator.setIcon(view.OFF);
+					}
+
 					sleep(delay * 1000);
 				}
 			}
