@@ -13,6 +13,7 @@ public class ButtonListener implements ActionListener {
 	private TemperatureController temperatureThread;
 	private HumidityController humidityThread;
 	private MoistureController soilMoistureThread;
+	private FileHandler handler;
 	private boolean temperatureClosed, humidityClosed, moistureClosed,
 			threadsStarted;
 
@@ -23,7 +24,9 @@ public class ButtonListener implements ActionListener {
 		humidityClosed = !view.humidityInputFrame.isVisible();
 		moistureClosed = !view.soilMoistureInputFrame.isVisible();
 
-		greenHouseThread = new GreenHouse(view);
+		handler = new FileHandler(view);
+
+		greenHouseThread = new GreenHouse(view, handler);
 		temperatureThread = new TemperatureController(view, greenHouseThread);
 		humidityThread = new HumidityController(view, greenHouseThread);
 		soilMoistureThread = new MoistureController(view, greenHouseThread);
@@ -35,14 +38,12 @@ public class ButtonListener implements ActionListener {
 		view.soilMoistureButton.setEnabled(enabled);
 
 		view.startButton.setEnabled(enabled);
-		view.saveButton.setEnabled(enabled);
+		view.stopButton.setEnabled(!enabled);
 		view.loadButton.setEnabled(enabled);
 
 		view.temperatureOutput.setEditable(enabled);
 		view.humidityOutput.setEditable(enabled);
 		view.soilMoistureOutput.setEditable(enabled);
-
-		view.stopButton.setEnabled(!enabled);
 	}
 
 	@Override
@@ -83,6 +84,7 @@ public class ButtonListener implements ActionListener {
 			soilMoistureThread.update();
 
 			if (!threadsStarted) {
+				handler.saveStartingValues();
 				greenHouseThread.start();
 				temperatureThread.start();
 				humidityThread.start();
@@ -113,11 +115,10 @@ public class ButtonListener implements ActionListener {
 			view.humidifierIndicator.setIcon(view.OFF);
 			view.sprinklerIndicator.setIcon(view.OFF);
 			break;
-		case "save_simulation":
-			System.out.println(pushed.getName());
-			break;
 		case "load_simulation":
-			System.out.println(pushed.getName());
+			view.logArea.setText(handler.loadSimulation());
+			view.setVisible(view.logOutputFrame, true);
+			view.logOutputFrame.setSize(view.logOutputFrame.getWidth(), 600);
 			break;
 		default:
 			System.err.println(e.getActionCommand());

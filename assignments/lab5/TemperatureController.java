@@ -46,16 +46,17 @@ public class TemperatureController extends Thread {
 		paused = false;
 		try {
 			while (running) {
+				sleep(delay * 1000);
 				if (!paused) {
 					double currentTemperature = greenHouse.currentTemperature;
 
 					if (currentTemperature < minimumTemperature) {
-						greenHouse.controllerTemperatureChange += furnaceChange;
+						greenHouse.controllerTemperatureChange = furnaceChange;
 
 						view.furnaceIndicator.setIcon(view.ON);
 						view.airConditionerIndicator.setIcon(view.OFF);
 					} else if (currentTemperature > maximumTemperature) {
-						greenHouse.controllerTemperatureChange -= acChange;
+						greenHouse.controllerTemperatureChange = -acChange;
 
 						view.furnaceIndicator.setIcon(view.OFF);
 						view.airConditionerIndicator.setIcon(view.ON);
@@ -65,8 +66,6 @@ public class TemperatureController extends Thread {
 						view.furnaceIndicator.setIcon(view.OFF);
 						view.airConditionerIndicator.setIcon(view.OFF);
 					}
-
-					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {

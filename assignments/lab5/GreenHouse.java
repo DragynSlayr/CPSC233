@@ -4,20 +4,24 @@ public class GreenHouse extends Thread {
 
 	private View view;
 	private volatile boolean running, paused;
-	private int delay;
+	private int delay, currentTime;
 
 	public double currentTemperature, currentHumidity, currentSoilMoisture;
 	public double controllerTemperatureChange, controllerHumidityChange,
 			controllerSoilMoistureChange;
 	private double externalTemperatureChange, externalHumidityChange,
 			externalMoistureChange;
+	private FileHandler handler;
 
-	public GreenHouse(View view) {
+	public GreenHouse(View view, FileHandler handler) {
 		this.view = view;
+		this.handler = handler;
 
 		controllerTemperatureChange = 0.0;
 		controllerHumidityChange = 0.0;
 		controllerSoilMoistureChange = 0.0;
+
+		currentTime = 0;
 	}
 
 	public void setRunning(boolean running) {
@@ -61,12 +65,32 @@ public class GreenHouse extends Thread {
 		}
 	}
 
+	private void saveSimulation() {
+		handler.saveSimulation("Current Time\t" + currentTime + "s");
+		handler.saveSimulation(String.format("Current Temperature\t%.2f",
+				currentTemperature));
+		handler.saveSimulation(String.format("Current Humidity\t%.2f",
+				currentHumidity));
+		handler.saveSimulation(String.format("Current Soil Moisture\t%.2f",
+				currentSoilMoisture));
+		handler.saveSimulation("AC On\t"
+				+ view.airConditionerIndicator.getIcon().equals(view.ON));
+		handler.saveSimulation("Furnace On\t"
+				+ view.furnaceIndicator.getIcon().equals(view.ON));
+		handler.saveSimulation("Humidifier On\t"
+				+ view.humidifierIndicator.getIcon().equals(view.ON));
+		handler.saveSimulation("Sprinkler On\t"
+				+ view.sprinklerIndicator.getIcon().equals(view.ON));
+		handler.saveSimulation("");
+	}
+
 	@Override
 	public void run() {
 		running = true;
 		paused = false;
 		try {
 			while (running) {
+				sleep(delay * 1000);
 				if (!paused) {
 					double newTemperature, newHumidity, newMoisture;
 
@@ -93,11 +117,10 @@ public class GreenHouse extends Thread {
 					currentHumidity = newHumidity;
 					currentSoilMoisture = newMoisture;
 
-					controllerTemperatureChange = 0.0;
-					controllerHumidityChange = 0.0;
-					controllerSoilMoistureChange = 0.0;
+					currentTime += delay;
+
+					saveSimulation();
 				}
-				sleep(delay * 1000);
 			}
 		} catch (InterruptedException ie) {
 			System.err.println(ie.getMessage());

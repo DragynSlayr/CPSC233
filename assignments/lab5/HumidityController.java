@@ -31,7 +31,7 @@ public class HumidityController extends Thread {
 				.getText());
 
 		delay = Integer.parseInt(view.humidityUpdateRateInput.getText());
-		
+
 		// Adjust for delay
 		humidifierChange *= delay / 60.0;
 	}
@@ -42,24 +42,20 @@ public class HumidityController extends Thread {
 		paused = false;
 		try {
 			while (running) {
+				sleep(delay * 1000);
 				if (!paused) {
 					double currentHumidity = greenHouse.currentHumidity;
 
 					if (currentHumidity < minimumHumidity) {
-						greenHouse.controllerHumidityChange += humidifierChange;
+						greenHouse.controllerHumidityChange = humidifierChange;
 
 						view.humidifierIndicator.setIcon(view.ON);
-					} else if (currentHumidity > maximumHumidity) {
-						greenHouse.controllerHumidityChange = 0.0;
-
-						view.humidifierIndicator.setIcon(view.OFF);
-					} else {
+					} else if (currentHumidity > maximumHumidity
+							|| currentHumidity >= minimumHumidity) {
 						greenHouse.controllerHumidityChange = 0.0;
 
 						view.humidifierIndicator.setIcon(view.OFF);
 					}
-
-					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {

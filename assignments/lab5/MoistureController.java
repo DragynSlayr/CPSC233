@@ -42,24 +42,20 @@ public class MoistureController extends Thread {
 		paused = false;
 		try {
 			while (running) {
+				sleep(delay * 1000);
 				if (!paused) {
 					double currentMoisture = greenHouse.currentSoilMoisture;
 
 					if (currentMoisture < minimumMoisture) {
-						greenHouse.controllerSoilMoistureChange += sprinklerChange;
+						greenHouse.controllerSoilMoistureChange = sprinklerChange;
 
 						view.sprinklerIndicator.setIcon(view.ON);
-					} else if (currentMoisture > maximumMoisture) {
-						greenHouse.controllerSoilMoistureChange = 0.0;
-
-						view.sprinklerIndicator.setIcon(view.OFF);
-					} else {
+					} else if (currentMoisture > maximumMoisture
+							|| currentMoisture >= minimumMoisture) {
 						greenHouse.controllerSoilMoistureChange = 0.0;
 
 						view.sprinklerIndicator.setIcon(view.OFF);
 					}
-
-					sleep(delay * 1000);
 				}
 			}
 		} catch (InterruptedException ie) {
