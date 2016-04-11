@@ -41,7 +41,7 @@ public class View {
 	public JButton setTemperatureButton, setHumidityButton,
 			setSoilMoistureButton;
 
-	// Text Fields for the view
+	// Text fields for the view
 	public JTextField temperatureOutput, humidityOutput, soilMoistureOutput;
 	public JTextField temperatureUpdateRateInput, humidityUpdateRateInput,
 			soilMoistureUpdateRateInput, greenHouseUpdateRateInput;
@@ -265,118 +265,155 @@ public class View {
 	 * @return A panel for the temperature controls
 	 */
 	private JFrame createTemperatureInputFrame() {
+		// Create the frame and set layout
 		JFrame frame = new JFrame("Temperature Controls");
 		frame.getContentPane().setLayout(
 				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		// Create panel for input, set a blank border
+		JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+		panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
+		// Create labels
 		JLabel externalRateLabel = new JLabel("External Change per Minute");
 		JLabel idealTemperatureLabel = new JLabel("Desired Temperature");
 		JLabel furnaceHeatingRateLabel = new JLabel(
 				"Furnace Heating rate per Minute");
 		JLabel acCoolingRateLabel = new JLabel("A/C Cooling rate per Minute");
 
+		// Initialize text fields
 		externalTemperatureChangeInput = new JTextField("3");
 		idealTemperatureInput = new JTextField("20");
 		furnaceHeatingRateInput = new JTextField("5");
 		acCoolingRateInput = new JTextField("4");
 
-		inputPanel.add(externalRateLabel);
-		inputPanel.add(externalTemperatureChangeInput);
-		inputPanel.add(idealTemperatureLabel);
-		inputPanel.add(idealTemperatureInput);
-		inputPanel.add(furnaceHeatingRateLabel);
-		inputPanel.add(furnaceHeatingRateInput);
-		inputPanel.add(acCoolingRateLabel);
-		inputPanel.add(acCoolingRateInput);
+		// Add labels and fields to panel
+		panel.add(externalRateLabel);
+		panel.add(externalTemperatureChangeInput);
+		panel.add(idealTemperatureLabel);
+		panel.add(idealTemperatureInput);
+		panel.add(furnaceHeatingRateLabel);
+		panel.add(furnaceHeatingRateInput);
+		panel.add(acCoolingRateLabel);
+		panel.add(acCoolingRateInput);
 
-		frame.add(inputPanel);
+		// Add panel to the frame
+		frame.add(panel);
 
+		// Create button, set name and center it
 		setTemperatureButton = new JButton("Save and Close");
 		setTemperatureButton.setName("finalize_temperature");
 		setTemperatureButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		// Add the temperature button to the frame
 		frame.add(setTemperatureButton);
 
+		// Return the frame
 		return frame;
 	}
 
+	/**
+	 * Create a panel for humidity controls
+	 * 
+	 * @return A panel for the temperature controls
+	 */
 	private JFrame createHumidityInputFrame() {
+		// Create the frame, set a layout
 		JFrame frame = new JFrame("Humidity Controls");
 		frame.getContentPane().setLayout(
 				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		// Create a panel for input
+		JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+		panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
+		// Create labels
 		JLabel externalRateLabel = new JLabel("External Change per Minute");
 		JLabel minimumHumidityLabel = new JLabel("Minimum Humidity");
 		JLabel maximumHumidityLabel = new JLabel("Maximum Humidity");
 		JLabel humidifyingRateLabel = new JLabel("Humidifying rate per Minute");
 
+		// Initialize text fields
 		externalHumidityChangeInput = new JTextField("-2");
 		minimumHumidityInput = new JTextField("30");
 		maximumHumidityInput = new JTextField("40");
 		humidifyingRateInput = new JTextField("12");
 
-		inputPanel.add(externalRateLabel);
-		inputPanel.add(externalHumidityChangeInput);
-		inputPanel.add(minimumHumidityLabel);
-		inputPanel.add(minimumHumidityInput);
-		inputPanel.add(maximumHumidityLabel);
-		inputPanel.add(maximumHumidityInput);
-		inputPanel.add(humidifyingRateLabel);
-		inputPanel.add(humidifyingRateInput);
+		// Add the label and text fields to the panel
+		panel.add(externalRateLabel);
+		panel.add(externalHumidityChangeInput);
+		panel.add(minimumHumidityLabel);
+		panel.add(minimumHumidityInput);
+		panel.add(maximumHumidityLabel);
+		panel.add(maximumHumidityInput);
+		panel.add(humidifyingRateLabel);
+		panel.add(humidifyingRateInput);
 
-		frame.add(inputPanel);
+		// Add the panel to the frame
+		frame.add(panel);
 
+		// Create a button, set name and center the button
 		setHumidityButton = new JButton("Save and Close");
 		setHumidityButton.setName("finalize_humidity");
 		setHumidityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		// Add the button to the frame
 		frame.add(setHumidityButton);
 
+		// Return frame
 		return frame;
 	}
 
+	/**
+	 * Create a panel for temperature controls
+	 * 
+	 * @return A panel for the temperature controls
+	 */
 	private JFrame createSoilMoistureInputFrame() {
+		// Create the frame, set the layout
 		JFrame frame = new JFrame("Soil Moisture Controls");
 		frame.getContentPane().setLayout(
 				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		// Create a panel for input
+		JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+		panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
+		// Create labels
 		JLabel externalRateLabel = new JLabel("External Change per Minute");
 		JLabel minimumMoistureLabel = new JLabel("Minimum Soil Moisture");
 		JLabel maximumMoistureLabel = new JLabel("Maximum Soil Moisture");
 		JLabel moisturizingRateLabel = new JLabel(
 				"Moisturizing rate per Minute");
 
+		// Initialize text fields
 		externalMoistureChangeInput = new JTextField("-1");
 		minimumMoistureInput = new JTextField("40");
 		maximumMoistureInput = new JTextField("50");
 		moisturizingRateInput = new JTextField("3");
 
-		inputPanel.add(externalRateLabel);
-		inputPanel.add(externalMoistureChangeInput);
-		inputPanel.add(minimumMoistureLabel);
-		inputPanel.add(minimumMoistureInput);
-		inputPanel.add(maximumMoistureLabel);
-		inputPanel.add(maximumMoistureInput);
-		inputPanel.add(moisturizingRateLabel);
-		inputPanel.add(moisturizingRateInput);
+		// Add all text fields and labels to the panel
+		panel.add(externalRateLabel);
+		panel.add(externalMoistureChangeInput);
+		panel.add(minimumMoistureLabel);
+		panel.add(minimumMoistureInput);
+		panel.add(maximumMoistureLabel);
+		panel.add(maximumMoistureInput);
+		panel.add(moisturizingRateLabel);
+		panel.add(moisturizingRateInput);
 
-		frame.add(inputPanel);
+		// Add the panel to the frame
+		frame.add(panel);
 
+		// Create a button, set name and center it
 		setSoilMoistureButton = new JButton("Save and Close");
 		setSoilMoistureButton.setName("finalize_soil_moisture");
 		setSoilMoistureButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		// Add the button to the frame
 		frame.add(setSoilMoistureButton);
 
+		// Return the frame
 		return frame;
 	}
 
@@ -386,41 +423,50 @@ public class View {
 	 * @return A Frame for thread update frequency input
 	 */
 	private JFrame createRateInputFrame() {
+		// Create the frame, set a layout
 		JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(
 				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-		inputPanel.setBorder(BorderFactory
+		// Create a panel for input
+		JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+		panel.setBorder(BorderFactory
 				.createTitledBorder("Update Rate in Seconds"));
 
+		// Create labels
 		JLabel temperatureLabel = new JLabel("Temperature");
 		JLabel humidityLabel = new JLabel("Humidity");
 		JLabel soilMoistureLabel = new JLabel("Soil Moisture");
 		JLabel greenHouseLabel = new JLabel("Green House");
 
+		// Initialize text fields
 		temperatureUpdateRateInput = new JTextField("3");
 		humidityUpdateRateInput = new JTextField("3");
 		soilMoistureUpdateRateInput = new JTextField("3");
 		greenHouseUpdateRateInput = new JTextField("3");
 
-		inputPanel.add(temperatureLabel);
-		inputPanel.add(temperatureUpdateRateInput);
-		inputPanel.add(humidityLabel);
-		inputPanel.add(humidityUpdateRateInput);
-		inputPanel.add(soilMoistureLabel);
-		inputPanel.add(soilMoistureUpdateRateInput);
-		inputPanel.add(greenHouseLabel);
-		inputPanel.add(greenHouseUpdateRateInput);
+		// Add all labels and text fields to the panel
+		panel.add(temperatureLabel);
+		panel.add(temperatureUpdateRateInput);
+		panel.add(humidityLabel);
+		panel.add(humidityUpdateRateInput);
+		panel.add(soilMoistureLabel);
+		panel.add(soilMoistureUpdateRateInput);
+		panel.add(greenHouseLabel);
+		panel.add(greenHouseUpdateRateInput);
 
-		frame.add(inputPanel);
+		// Add the panel to the frame
+		frame.add(panel);
 
+		// Create finalize button, set name and center it
 		finalizeButton = new JButton("Start with Parameters");
 		finalizeButton.setName("finalize_simulation");
 		finalizeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+		// Add the button to the frame
 		frame.add(finalizeButton);
 
+		// Return the frame
 		return frame;
 	}
 
@@ -430,21 +476,27 @@ public class View {
 	 * @return A Frame for showing saved simulations
 	 */
 	private JFrame createLogOutputFrame() {
+		// Create the frame
 		JFrame frame = new JFrame();
-		frame.getContentPane().setLayout(
-				new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-		JPanel inputPanel = new JPanel(new GridLayout(1, 1, 10, 10));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		// Create a panel with a border
+		JPanel panel = new JPanel(new GridLayout());
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+		// Initialize text area, disable editing
 		logArea = new JTextArea();
 		logArea.setEditable(false);
 
+		// Create a scroll pane that uses the text area
 		JScrollPane scrollPane = new JScrollPane(logArea);
 
-		inputPanel.add(scrollPane);
-		frame.add(inputPanel);
+		// Add the pane the panel
+		panel.add(scrollPane);
 
+		// Add the panel to the frame
+		frame.add(panel);
+
+		// Return the frame
 		return frame;
 	}
 }

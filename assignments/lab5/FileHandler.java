@@ -6,38 +6,54 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 public class FileHandler {
 
+	// Instance variables
 	private View view;
 	private PrintWriter writer;
-	private BufferedReader reader;
 
+	/**
+	 * Creates a File Handler object
+	 * 
+	 * @param view
+	 *            The view to get values from
+	 */
 	public FileHandler(View view) {
+		// Store parameter
 		this.view = view;
+
+		// Create a File object
 		File file = new File("save.txt");
 
 		try {
 			if (!file.exists()) {
+				// Create the file if it is not present
 				file.createNewFile();
 			}
 
+			// Create the writer
 			writer = new PrintWriter(new FileWriter(file));
-			reader = new BufferedReader(new FileReader(file));
 		} catch (IOException ioe) {
+			// Display the error
 			System.err.println(ioe.getMessage());
 		}
 	}
 
+	/**
+	 * Retrieves and saves values from the View
+	 */
 	public void saveStartingValues() {
 		saveSimulation("~~~~~~~~~~~~~~~~~Starting Values~~~~~~~~~~~~~~~~~");
+
+		// Save starting input values
 		saveSimulation("Starting Temperature\t"
 				+ view.temperatureOutput.getText());
 		saveSimulation("Starting Humidity\t" + view.humidityOutput.getText());
 		saveSimulation("Starting Soil Moisture\t"
 				+ view.soilMoistureOutput.getText());
 
+		// Save temperature data
 		saveSimulation("External Temperature Change\t"
 				+ view.externalTemperatureChangeInput.getText() + " per minute");
 		saveSimulation("Desired Temperature\t"
@@ -47,6 +63,7 @@ public class FileHandler {
 		saveSimulation("AC Cooling Rate\t" + view.acCoolingRateInput.getText()
 				+ " per minute");
 
+		// Save humidity data
 		saveSimulation("External Humidity Change\t"
 				+ view.externalHumidityChangeInput.getText() + " per minute");
 		saveSimulation("Minimum Humidity\t"
@@ -56,6 +73,7 @@ public class FileHandler {
 		saveSimulation("Humidifying Rate\t"
 				+ view.humidifyingRateInput.getText() + " per minute");
 
+		// Save soil moisture data
 		saveSimulation("External Soil Moisture Change\t"
 				+ view.externalMoistureChangeInput.getText() + " per minute");
 		saveSimulation("Minimum Soil Moisture\t"
@@ -65,6 +83,7 @@ public class FileHandler {
 		saveSimulation("Moisturizing Rate\t"
 				+ view.moisturizingRateInput.getText() + " per minute");
 
+		// Save update rates
 		saveSimulation("Temperature Update Rate\t"
 				+ view.temperatureUpdateRateInput.getText() + " per second");
 		saveSimulation("Humidity Update Rate\t"
@@ -73,40 +92,65 @@ public class FileHandler {
 				+ view.soilMoistureUpdateRateInput.getText() + " per second");
 		saveSimulation("Green House Update Rate\t"
 				+ view.greenHouseUpdateRateInput.getText() + " per second");
+
 		saveSimulation("");
 		saveSimulation("~~~~~~~~~~~~~~~~~Running Values~~~~~~~~~~~~~~~~~");
 	}
 
+	/**
+	 * Saves data to the file
+	 * 
+	 * @param data
+	 *            The data to save
+	 */
 	public void saveSimulation(String data) {
+		// Print data with a new line
 		writer.println(data);
+
+		// Cause all remaining data in the PrintWriter's buffer to be written
+		// to the file
 		writer.flush();
 	}
 
+	/**
+	 * Gets all data from the save file
+	 * 
+	 * @return The data from the save file
+	 */
 	public String loadSimulation() {
 		try {
-			ArrayList<String> lines = new ArrayList<String>();
+			// Create a BufferedReader for reading the file
+			BufferedReader reader = new BufferedReader(new FileReader(
+					"save.txt"));
 
+			// A String to hold the lines of the file
+			String lines = "";
+
+			// Read the first line of the file
 			String line = reader.readLine();
 
+			// Read lines of the file until you reach the end
 			while (line != null) {
-				lines.add(line);
+				// Append line to current lines
+				lines += line + "\n";
+
+				// Read next line
 				line = reader.readLine();
 			}
 
-			String toReturn = "";
+			// Close the reader
+			reader.close();
 
-			for (Object o : lines.toArray()) {
-				toReturn += String.valueOf(o) + "\n";
-			}
-
-			return toReturn;
+			// Return the file contents
+			return lines;
 		} catch (IOException ioe) {
+			// Return the error message if an error is encountered
 			return ioe.getMessage();
 		}
 	}
 
 	protected void finalize() throws Throwable {
+		// Close the writer
 		writer.close();
-		reader.close();
 	}
 }
