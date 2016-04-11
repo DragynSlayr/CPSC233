@@ -1,0 +1,31 @@
+~~~~~~~~~~~~~~~~~Starting Values~~~~~~~~~~~~~~~~~
+Starting Temperature	20
+Starting Humidity	35
+Starting Soil Moisture	45
+External Temperature Change	3 per minute
+Desired Temperature	20
+Furnace Heating Rate	5 per minute
+AC Cooling Rate	4 per minute
+External Humidity Change	-2 per minute
+Minimum Humidity	30
+Maximum Humidity	40 per minute
+Humidifying Rate	12 per minute
+External Soil Moisture Change	-1 per minute
+Minimum Soil Moisture	40
+Maximum Soil Humidity	50 per minute
+Moisturizing Rate	3 per minute
+Temperature Update Rate	3 per second
+Humidity Update Rate	12 per second
+Soil Moisture Update Rate	3 per second
+Green House Update Rate	3 per second
+
+~~~~~~~~~~~~~~~~~Running Values~~~~~~~~~~~~~~~~~
+Current Time	3s
+Current Temperature	20.15
+Current Humidity	34.90
+Current Soil Moisture	44.95
+AC On	false
+Furnace On	false
+Humidifier On	false
+Sprinkler On	false
+
