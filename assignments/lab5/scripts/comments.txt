@@ -1,0 +1,65 @@
+/**
+
+* The Thread for monitoring and adjusting green house humidity
+* 
+* @author Inderpreet Dhillon
+*
+*/
+
+// Instance Variables
+
+// Variables used while running
+
+// State of the Thread, volatile means this variables is accessible to a
+
+// single thread at a time
+
+/**
+
+* Creates a Humidity Controller object
+* 
+* @param view
+*            The view to receive values from
+* @param greenHouse
+*            The green house to monitor
+*/
+
+// Store parameters
+
+/**
+
+* Sets the state of this thread
+* 
+* @param paused
+*            True if pausing the thread, False otherwise
+*/
+
+/**
+
+* Updates variables of the thread with values from the view
+*/
+
+// Get the necessary values from the view
+
+// Adjust change for thread delay
+
+// Loop until interrupted
+
+// Pause for the delay in seconds
+
+// Only run if not paused
+
+// Get the current control value from the green house
+
+// React to the control value
+
+// Modify the change in the green house
+
+// Display on indicator
+
+// Reset the change in the green house
+
+// Display an off indicator
+
+// Display the error
+
