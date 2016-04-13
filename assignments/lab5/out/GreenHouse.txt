@@ -1,0 +1,23 @@
+GreenHouse
+
+- view : View
+- handler : FileHandler
+- delay : int
+- currentTime : int
++ currentTemperature : double
++ currentHumidity : double
++ currentSoilMoisture : double
++ controllerTemperatureChange : double
++ controllerHumidityChange : double
++ controllerSoilMoistureChange : double
+- externalTemperatureChange : double
+- externalHumidityChange : double
+- externalMoistureChange : double
+- paused : boolean
+
++ GreenHouse(view : View, handler : FileHandler)
++ setPaused(paused : boolean) : void
++ update() : void
+- adjustToRange(value : double, lowerLimit : double, upperLimit : double) : double
+- saveSimulation() : void
++ run() : void

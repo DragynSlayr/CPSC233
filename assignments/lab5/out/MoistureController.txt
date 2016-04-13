@@ -1,0 +1,14 @@
+MoistureController
+
+- view : View
+- greenHouse : GreenHouse
+- minimumMoisture : double
+- maximumMoisture : double
+- sprinklerChange : double
+- delay : int
+- paused : boolean
+
++ MoistureController(view : View, greenHouse : GreenHouse)
++ setPaused(paused : boolean) : void
++ update() : void
++ run() : void

@@ -1,0 +1,57 @@
+View
+
++ mainFrame : JFrame
++ temperatureInputFrame : JFrame
++ humidityInputFrame : JFrame
++ soilMoistureInputFrame : JFrame
++ rateInputFrame : JFrame
++ logOutputFrame : JFrame
++ ON : ImageIcon
++ OFF : ImageIcon
++ temperatureButton : JButton
++ humidityButton : JButton
++ soilMoistureButton : JButton
++ startButton : JButton
++ stopButton : JButton
++ loadButton : JButton
++ finalizeButton : JButton
++ setTemperatureButton : JButton
++ setHumidityButton : JButton
++ setSoilMoistureButton : JButton
++ temperatureOutput : JTextField
++ humidityOutput : JTextField
++ soilMoistureOutput : JTextField
++ temperatureUpdateRateInput : JTextField
++ humidityUpdateRateInput : JTextField
++ soilMoistureUpdateRateInput : JTextField
++ greenHouseUpdateRateInput : JTextField
++ externalTemperatureChangeInput : JTextField
++ idealTemperatureInput : JTextField
++ furnaceHeatingRateInput : JTextField
++ acCoolingRateInput : JTextField
++ externalHumidityChangeInput : JTextField
++ minimumHumidityInput : JTextField
++ maximumHumidityInput : JTextField
++ humidifyingRateInput : JTextField
++ externalMoistureChangeInput : JTextField
++ minimumMoistureInput : JTextField
++ maximumMoistureInput : JTextField
++ moisturizingRateInput : JTextField
++ logArea : JTextArea
++ furnaceIndicator : JLabel
++ airConditionerIndicator : JLabel
++ humidifierIndicator : JLabel
++ sprinklerIndicator : JLabel
+
++ View()
++ windowClosing(we : WindowEvent) : void
++ setVisible(frame : JFrame, visible : boolean) : void
+- createParametersPanel() : JPanel
+- createOutputPanel() : JPanel
+- createStatusPanel() : JPanel
+- createControlPanel() : JPanel
+- createTemperatureInputFrame() : JFrame
+- createHumidityInputFrame() : JFrame
+- createSoilMoistureInputFrame() : JFrame
+- createRateInputFrame() : JFrame
+- createLogOutputFrame() : JFrame

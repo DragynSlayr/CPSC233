@@ -1,0 +1,14 @@
+HumidityController
+
+- view : View
+- greenHouse : GreenHouse
+- minimumHumidity : double
+- maximumHumidity : double
+- humidifierChange : double
+- delay : int
+- paused : boolean
+
++ HumidityController(view : View, greenHouse : GreenHouse)
++ setPaused(paused : boolean) : void
++ update() : void
++ run() : void

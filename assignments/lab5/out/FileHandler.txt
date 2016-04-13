@@ -1,0 +1,10 @@
+FileHandler
+
+- view : View
+- writer : PrintWriter
+
++ FileHandler(view : View)
++ saveStartingValues() : void
++ saveSimulation(data : String) : void
++ loadSimulation() : String
+# finalize() : void
